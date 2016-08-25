@@ -14,22 +14,6 @@ import Layout from './layout.js';
 
 /******************************************************************************
  * Technical consideration + pressumptions :
- * - The API endpoint seems to be protected with authentication mechanism.
- *   I kept getting the error 400 - bad request regardless whether
- *   I had passed valid inputs or the hardcoded usedemail@airwallex.com.
- *   FYI, I had CORS (Cross Origin Resource Sharing) enabled.
- *   Upon inspecting the given API endpoint through the web browser,
- *   I received the following response :
- *   {message : missing authentication token}
- *   which indicates the endpoint is protected by an authentication
- *   mechanism (OAuth2 ?). I need the access token in order to be able
- *   to retrieve the success response from the server otherwise I will keep
- *   getting the error 400 response.
- *   Nevertheless, the confirmation window can be displayed without performing
- *   the AJAX POST request by setting the value of "doAjaxRequest" variable in the
- *   "handleSubmission" method of the "InvitationForm" React class to false.
- *   Setting it to false will bypass the AJAX post operation and display the
- *   confirmation window straight away.
  *
  * - The web page has been tested in both Chrome and Firefox, but not in Internet Explorer.
  *   Although I don't expect the webpage will break down spectacularly once its displayed in
