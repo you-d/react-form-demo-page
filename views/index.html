@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>BROCCOLI &#38; CO.</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width", initial-scale="1", maximum-scale="1", user-scalable="no">
+    <!-- Dev Note: the following stylesheets seems to not play nicely with webpack bundler. -->
+    <link rel='stylesheet' href='../node_modules/bootstrap/dist/css/bootstrap.min.css' />
+    <link rel='stylesheet' href='../public/styleCombo.bundle.css' />
+  </head>
+  <body>
+    <noscript class="noscript">
+        <style type="text/css">#main {display: none;}</style>
+        <div>
+            For full functionality of this site, it is necessary to enable the Javascript.
+            Here are the <a href="http://www.enable-javascript.com/" target="_blank">
+            instructions</a> on how to enable Javascript in your web browser.
+        </div>
+    </noscript>
+
+    <div id="bodyPlaceholder"></div>
+
+    <!-- Libraries -->
+    <!-- Dev Note: the following js libraries seems to not play nicely with webpack bundler. -->
+    <script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- Dev Note 2: IEFF code structure doesn't work nicely with webpack bundler. Therefore
+         I can't include the line below in jsCombo.bundle.js -->
+    <script type="text/javascript" src="../public/mainScript.js"></script>
+    <script type="text/javascript" src="../public/jsCombo.bundle.js"></script>
+  </body>
+</html>
