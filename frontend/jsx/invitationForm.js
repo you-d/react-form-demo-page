@@ -19,7 +19,7 @@ export class InvitationForm extends React.Component {
         this.handleSubmission = this.handleSubmission.bind(this);
         this.sendBtnClickedHandler = this.sendBtnClickedHandler.bind(this);
 
-        this._requestUrl = "https://l94wc2001h.execute-api.ap-southeast-2.amazonaws.com/prod/fake-auth";
+        this._requestUrl = "https://execute-api.ap-southeast-2.amazonaws.com/prod/fake-auth";
 
         this._triggerPopUpComponentMethod = this.props.triggerPopUpComponentMethod;
 
@@ -153,40 +153,47 @@ export class InvitationForm extends React.Component {
         // construct the payload
         let payload = JSON.stringify({ "name" : this._inputs.name.value, "email" : this._inputs.email.value });
 
-        // perform AJAX request to the server
-        jQuery.ajax({
-            url: this._requestUrl, type: "POST",
-            dataType: "json", contentType: "json",
-            //dataType: "text", contentType: "text",
-            data: payload,
-            success: function(data) {
-                if (data.length > 0) {
-                  this._inputs.email.style.border = this._borderDefaultAppearance;
-                  this._inputs.email.style.color = this._defaultColour;
-                  this._errMsg.innerHTML = "";
-                  this._triggerPopUpComponentMethod("InvitationForm", false);
-                  this._triggerPopUpComponentMethod("ConfirmationMessage", true);
-                }
-            }.bind(this),
-            error: function(xhr, status, err) {
-                console.log(xhr.status.toString() + "-" + status + "-" + err);
-                switch(xhr.status.toString()) {
-                  case "0" :
-                      this._errMsg.innerHTML = this._checkNetConnErrMsg;
-                      // re-enable the send button
-                      helperModule.crossBrowserAddEventListener(this._submitBtn, "click", this.sendBtnClickedHandler);
-                      this._submitBtn.className = "invitationBtn";
-                      this._submitBtn.innerHTML = "Send";
-                      break;
-                  case "400" :
-                      console.error(err);
-                      this._inputs.email.style.border = this._borderErrorAppearance;
-                      this._inputs.email.style.color = this._errorColour;
-                      this._errMsg.innerHTML = this._400ErrMsg;
-                      break;
-                }
-            }.bind(this),
-        });
+        let performAjaxRequest = false;
+
+        if (performAjaxRequest) {
+            // perform AJAX request to the server
+            jQuery.ajax({
+                url: this._requestUrl, type: "POST",
+                dataType: "json", contentType: "json",
+                //dataType: "text", contentType: "text",
+                data: payload,
+                success: function(data) {
+                    if (data.length > 0) {
+                      this._inputs.email.style.border = this._borderDefaultAppearance;
+                      this._inputs.email.style.color = this._defaultColour;
+                      this._errMsg.innerHTML = "";
+                      this._triggerPopUpComponentMethod("InvitationForm", false);
+                      this._triggerPopUpComponentMethod("ConfirmationMessage", true);
+                    }
+                }.bind(this),
+                error: function(xhr, status, err) {
+                    console.log(xhr.status.toString() + "-" + status + "-" + err);
+                    switch(xhr.status.toString()) {
+                      case "0" :
+                          this._errMsg.innerHTML = this._checkNetConnErrMsg;
+                          // re-enable the send button
+                          helperModule.crossBrowserAddEventListener(this._submitBtn, "click", this.sendBtnClickedHandler);
+                          this._submitBtn.className = "invitationBtn";
+                          this._submitBtn.innerHTML = "Send";
+                          break;
+                      case "400" :
+                          console.error(err);
+                          this._inputs.email.style.border = this._borderErrorAppearance;
+                          this._inputs.email.style.color = this._errorColour;
+                          this._errMsg.innerHTML = this._400ErrMsg;
+                          break;
+                    }
+                }.bind(this),
+            });
+        } else {
+            this._triggerPopUpComponentMethod("InvitationForm", false);
+            this._triggerPopUpComponentMethod("ConfirmationMessage", true);
+        }
     }
     render() {
         return(
