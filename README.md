@@ -1,6 +1,6 @@
 # react-form-demo-page
 
-Status: Meet the Spec Requirement
+Status: Completed (Meet the Spec Requirement)
 
 INTRO
 -----
