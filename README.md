@@ -1,5 +1,7 @@
 # react-form-demo-page
 
+Status: Meet the Spec Requirement
+
 INTRO
 -----
 This webpage is a single page application, and fully responsive. Under the hood, it utilises Facebook React  
